@@ -9,26 +9,26 @@ public class Solution {
 
         Scanner sc = new Scanner(System.in);
         //System.out.print("enter test cases :");
-        int t = sc.nextInt();
-        //System.out.print("enter m x n elements :");
-        int m = sc.nextInt();
-        int n = sc.nextInt();
-        //System.out.print("enter elements :\n");
-        int[][] mat = new int[m][n];
-        for (int row = 0; row < m; row++) {
-            for (int col = 0; col < n; col++) {
+        int testCases = sc.nextInt();
+        //System.out.print("enter rows x cols elements :");
+        int rows = sc.nextInt();
+        int cols = sc.nextInt();
+        //System.out.print("enter elements :\cols");
+        int[][] mat = new int[rows][cols];
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
                 mat[row][col] = sc.nextInt();
             }
         }
         int maxValue = findMaxValue(mat);
-        System.out.print(maxValue);
-        int[] maxValuesAt = findMaxPosition(maxValue, mat,m*n);
+        System.out.println("peak element is :"+ maxValue);
+        int[] maxValuesAt = findMaxPosition(maxValue, mat,rows*cols*2);
         System.out.println(Arrays.toString(maxValuesAt));
         ArrayList<Integer> hops= new ArrayList();
         for(int k=0; (k<maxValuesAt.length)&&maxValuesAt[k]!=-1;k=k+2){
-            int minRowHops = findMinHops(maxValuesAt[k]+1,m);
+            int minRowHops = findMinHops(maxValuesAt[k]+1,rows);
             System.out.print(minRowHops+" ");
-            int minColHops = findMinHops(maxValuesAt[k+1]+1,n);
+            int minColHops = findMinHops(maxValuesAt[k+1]+1,cols);
             System.out.println(minColHops);
             hops.add(minRowHops + minColHops);
         }
